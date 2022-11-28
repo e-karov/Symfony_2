@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\TravelRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TravelRepository::class)]
@@ -14,17 +13,17 @@ class Travel
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 150)]
+    #[ORM\Column(length: 255)]
     private ?string $destination = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
+    #[ORM\Column(length: 10)]
+    private ?string $date = null;
 
     #[ORM\Column]
     private ?float $price = null;
 
-    #[ORM\Column]
-    private ?int $duration = null;
+    #[ORM\Column(length: 50)]
+    private ?string $duration = null;
 
     public function getId(): ?int
     {
@@ -43,12 +42,12 @@ class Travel
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDate(): ?string
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate(string $date): self
     {
         $this->date = $date;
 
@@ -67,12 +66,12 @@ class Travel
         return $this;
     }
 
-    public function getDuration(): ?int
+    public function getDuration(): ?string
     {
         return $this->duration;
     }
 
-    public function setDuration(int $duration): self
+    public function setDuration(string $duration): self
     {
         $this->duration = $duration;
 
